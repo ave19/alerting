@@ -25,8 +25,10 @@ email_user   = "email_person"
 email_pwd    = "email_password"
 email_server = smtplib.SMTP('smtp.gmail.com', 587)
 
-#Next, log in to the server
+# Next, log in to the server
 email_server.login(email_user, email_pwd)
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 #
 # How to do the certificate thing:
