@@ -8,12 +8,25 @@
 
 from elasticsearch import Elasticsearch, client
 import certifi
+import smtplib
 
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Elastic Stack Settings
 # username and password for the alert user
 auth = ( 'elastic', 'password' )
 
 # index you want to query against, could be a pattern.
 target_index = 'the-index-with-the-alert-stuff'
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Email Settings
+email_user   = "email_person"
+email_pwd    = "email_password"
+email_server = smtplib.SMTP('smtp.gmail.com', 587)
+
+#Next, log in to the server
+email_server.login(email_user, email_pwd)
 
 #
 # How to do the certificate thing:
@@ -89,6 +102,10 @@ if len(result['hits']['hits']) > 0:
 
 	# There's hits to process....
 	print "Hits detected."
+	# Send the mail, you need the new line...
+	msg = "
+	Hello!" # The /n separates the message from the headers
+	server.sendmail("you@gmail.com", "target@example.com", msg)
 
 else:
 
